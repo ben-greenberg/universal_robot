@@ -11,37 +11,37 @@ find_package(Boost REQUIRED COMPONENTS system)
 ## Build ##
 ###########
 
-add_library(ur3_kin SHARED src/ur_kin.cpp)
-set_target_properties(ur3_kin PROPERTIES COMPILE_DEFINITIONS "UR3_PARAMS")
-target_link_libraries(ur3_kin PUBLIC
-  ${Boost_LIBRARIES})
-target_compile_options(ur3_kin PRIVATE -Wall -Wextra -Wsuggest-override -Wconversion -Wsign-conversion)
-if(CXX_FEATURE_FOUND EQUAL "-1")
-    target_compile_options(ur3_kin PUBLIC -std=c++11)
-else()
-    target_compile_features(ur3_kin PUBLIC cxx_std_11)
-endif()
-target_include_directories(ur3_kin PUBLIC
-    "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"
-    "$<INSTALL_INTERFACE:include>")
-target_include_directories(ur3_kin SYSTEM PUBLIC 
-  ${Boost_INCLUDE_DIRS})
+#add_library(ur3_kin SHARED src/ur_kin.cpp)
+#set_target_properties(ur3_kin PROPERTIES COMPILE_DEFINITIONS "UR3_PARAMS")
+#target_link_libraries(ur3_kin PUBLIC
+#  ${Boost_LIBRARIES})
+#target_compile_options(ur3_kin PRIVATE -Wall -Wextra -Wsuggest-override -Wconversion -Wsign-conversion)
+#if(CXX_FEATURE_FOUND EQUAL "-1")
+#    target_compile_options(ur3_kin PUBLIC -std=c++11)
+#else()
+#    target_compile_features(ur3_kin PUBLIC cxx_std_11)
+#endif()
+#target_include_directories(ur3_kin PUBLIC
+#    "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"
+#    "$<INSTALL_INTERFACE:include>")
+#target_include_directories(ur3_kin SYSTEM PUBLIC 
+#  ${Boost_INCLUDE_DIRS})
 
-add_library(ur5_kin SHARED src/ur_kin.cpp)
-set_target_properties(ur5_kin PROPERTIES COMPILE_DEFINITIONS "UR5_PARAMS")
-target_link_libraries(ur5_kin PUBLIC
-  ${Boost_LIBRARIES})
-target_compile_options(ur5_kin PRIVATE -Wall -Wextra -Wsuggest-override -Wconversion -Wsign-conversion)
-if(CXX_FEATURE_FOUND EQUAL "-1")
-    target_compile_options(ur5_kin PUBLIC -std=c++11)
-else()
-    target_compile_features(ur5_kin PUBLIC cxx_std_11)
-endif()
-target_include_directories(ur5_kin PUBLIC
-    "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"
-    "$<INSTALL_INTERFACE:include>")
-target_include_directories(ur5_kin SYSTEM PUBLIC 
-  ${Boost_INCLUDE_DIRS})
+#add_library(ur5_kin SHARED src/ur_kin.cpp)
+#set_target_properties(ur5_kin PROPERTIES COMPILE_DEFINITIONS "UR5_PARAMS")
+#target_link_libraries(ur5_kin PUBLIC
+#  ${Boost_LIBRARIES})
+#target_compile_options(ur5_kin PRIVATE -Wall -Wextra -Wsuggest-override -Wconversion -Wsign-conversion)
+#if(CXX_FEATURE_FOUND EQUAL "-1")
+#    target_compile_options(ur5_kin PUBLIC -std=c++11)
+#else()
+#    target_compile_features(ur5_kin PUBLIC cxx_std_11)
+#endif()
+#target_include_directories(ur5_kin PUBLIC
+#    "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"
+#    "$<INSTALL_INTERFACE:include>")
+#target_include_directories(ur5_kin SYSTEM PUBLIC 
+#  ${Boost_INCLUDE_DIRS})
 
 add_library(ur10_kin SHARED src/ur_kin.cpp)
 set_target_properties(ur10_kin PROPERTIES COMPILE_DEFINITIONS "UR10_PARAMS")
@@ -63,15 +63,15 @@ target_include_directories(ur10_kin SYSTEM PUBLIC
 ## Install ##
 #############
 
-list (APPEND PACKAGE_LIBRARIES ur3_kin)
-list (APPEND PACKAGE_LIBRARIES ur5_kin)
+#list (APPEND PACKAGE_LIBRARIES ur3_kin)
+#list (APPEND PACKAGE_LIBRARIES ur5_kin)
 list (APPEND PACKAGE_LIBRARIES ur10_kin)
  
 # Mark executables and/or libraries for installation
 install(TARGETS ${PACKAGE_LIBRARIES}
     EXPORT ${PROJECT_NAME}-targets DESTINATION lib)
 install(EXPORT ${PROJECT_NAME}-targets
-    NAMESPACE trajopt:: DESTINATION lib/cmake/${PROJECT_NAME})
+    NAMESPACE ur_kinematics:: DESTINATION lib/cmake/${PROJECT_NAME})
  
 # Mark cpp header files for installation
 install(DIRECTORY include/${PROJECT_NAME}
